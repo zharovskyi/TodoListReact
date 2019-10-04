@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/TodoListReact/todo/build/static/css/main.911a1894.chunk.css",
+    "main.js": "/TodoListReact/todo/build/static/js/main.fa1fa0ef.chunk.js",
+    "main.js.map": "/TodoListReact/todo/build/static/js/main.fa1fa0ef.chunk.js.map",
+    "runtime-main.js": "/TodoListReact/todo/build/static/js/runtime-main.4592f712.js",
+    "runtime-main.js.map": "/TodoListReact/todo/build/static/js/runtime-main.4592f712.js.map",
+    "static/js/2.0686d2b1.chunk.js": "/TodoListReact/todo/build/static/js/2.0686d2b1.chunk.js",
+    "static/js/2.0686d2b1.chunk.js.map": "/TodoListReact/todo/build/static/js/2.0686d2b1.chunk.js.map",
+    "index.html": "/TodoListReact/todo/build/index.html",
+    "precache-manifest.46b688472851fc0c385c8e00891a7f07.js": "/TodoListReact/todo/build/precache-manifest.46b688472851fc0c385c8e00891a7f07.js",
+    "service-worker.js": "/TodoListReact/todo/build/service-worker.js",
+    "static/css/main.911a1894.chunk.css.map": "/TodoListReact/todo/build/static/css/main.911a1894.chunk.css.map",
+    "static/media/logo.svg": "/TodoListReact/todo/build/static/media/logo.25bf045c.svg"
+  }
+}
