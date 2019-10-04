@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
 import styles from './TaskEditor.module.css';
 
-
 class TaskEditor extends Component {
-
     state = {
         text: '',
         priority: 'low',
     }
-    handleChange = (e) => {
-        // const { name, value } = e.target;
+
+    handleChange = e => {
+        const { name, value } = e.target;
         this.setState({
-            // [name]: value,
-            [e.target.name]: e.target.value,
+            [name]: value,
         });
-    }
+    };
+
     handleSubmit = e => {
         e.preventDefault();
         this.props.onAddTask({ ...this.state })
-        this.setState = ({
+        this.setState({
             text: '',
             priority: 'low',
         })
     }
-
-
 
     render() {
         const { text, priority } = this.state
@@ -34,10 +31,9 @@ class TaskEditor extends Component {
                     className={styles.input}
                     type="text"
                     name="text"
-                    placeholder="Enter task content..."
                     value={text}
                     onChange={this.handleChange}
-
+                    placeholder="Enter task content..."
                 />
                 <label className={styles.label}>
                     Select task priority:
@@ -54,7 +50,6 @@ class TaskEditor extends Component {
                     {/* <PrioritySelector
                     /> */}
                 </label>
-
                 <button type="submit">Create</button>
             </form>
         );

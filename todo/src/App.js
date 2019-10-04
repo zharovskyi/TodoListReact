@@ -12,47 +12,72 @@ const containerStyles = {
   minWidth: 800,
   marginLeft: 'auto',
   marginRight: 'auto',
+  textAlign: 'center'
 };
 
 
-
+const filterTasks = (tasks, filter) => {
+  return tasks.filter(task =>
+    task.text.toLowerCase().includes(filter.toLowerCase()),
+  );
+};
 class App extends Component {
   state = {
     tasks: [],
+    filter: '',
+  }
+  changeFilter = e => {
+    this.setState({ filter: e.target.value })
   }
   addTask = task => {
     const taskToAdd = {
       ...task,
       id: shortid.generate(),
-      comleted: false,
+      completed: false,
     }
     this.setState(prevState => ({
       tasks: [...prevState.tasks, taskToAdd],
     }))
   }
+
   deleteTask = id => {
     this.setState(prevState => ({
       tasks: prevState.tasks.filter(task => task.id !== id)
     }))
   }
+
   updateComplited = id => {
     this.setState(state => ({
-      tasks: state.tasks.map(task => {
-        task.id = id ? { ...task, comleted: !task.completed } : task;
-      })
+      tasks: state.tasks.map(task =>
+        task.id === id ? { ...task, completed: !task.completed } : task,
+      ),
+    }));
+  }
+
+  updatePriority = (id, priority) => {
+    this.setState(state => ({
+      tasks: state.tasks.map(task =>
+        task.id = id ? { ...task, priority: priority } : task
+      )
     }))
   }
 
+
+
   render() {
-    const { tasks } = this.state;
+    const { tasks, filter } = this.state;
+    const filteredTasks = filterTasks(tasks, filter);
+
     return (
       <div style={containerStyles}>
         <TaskEditor onAddTask={this.addTask} />
         <hr />
-        <TaskFilter />
+        <TaskFilter value={filter} onChangeFilter={this.changeFilter} />
         <TaskList
-          items={tasks}
+          items={filteredTasks}
           onDeleteTask={this.deleteTask}
+          onUpdateComplited={this.updateComplited}
+          onUpdatePriority={this.updatePriority}
         />
       </div>
     );

@@ -3,43 +3,52 @@ import PropTypes from 'prop-types';
 // import PrioritySelector from '../PrioritySelector/PrioritySelector';
 import styles from './Task.module.css';
 import Priority from '../../utils/Priority';
+import { identifier } from '@babel/types';
 
 const options = Object.values(Priority);
 
-const Task = ({ text, priority, completed, onDeleteTask }) => (
-    <div className={`${styles.task} y
+const Task = ({
+    text,
+    priority,
+    completed,
+    onDeleteTask,
+    onUpdateComplited,
+    onUpdatePriority,
+}) => (
+        <div className={`${styles.task} y
     ${styles[`${priority}Priority`]}`}>
-        <p className={styles.text}>{text}</p>
+            <p className={styles.text}>{text}</p>
 
-        <hr />
-        <div className={styles.actions}>
-            <button type="button" onClick={onDeleteTask}>
-                Delete
+            <hr />
+            <div className={styles.actions}>
+                <button type="button" onClick={onDeleteTask}>
+                    Delete
       </button>
-            <select name="priority" value=''>
-                <option value="low">Low</option>
-                <option value="normal">Normal</option>
-                <option value="high">High</option>
-                {/* {options.map(option => (
+                <select name="priority" value={priority} onChange={e => onUpdatePriority(identifier, e.target.value)}>
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    {/* {options.map(option => (
                     <option key={option} value={option}>
                         {option}
                     </option>
                 ))} */}
-            </select>
-            {/* <PrioritySelector
+                </select>
+                {/* <PrioritySelector
        
       /> */}
 
-            <label>
-                Completed:
+                <label>
+                    Completed:
         <input
-                    type="checkbox"
-
-                />
-            </label>
+                        type="checkbox"
+                        checked={completed}
+                        onChange={onUpdateComplited}
+                    />
+                </label>
+            </div>
         </div>
-    </div>
-);
+    );
 
 // Task.propTypes = {
 //   id: PropTypes.string.isRequired,
