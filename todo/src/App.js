@@ -9,7 +9,7 @@ import TaskList from './componenets/TaskList/TaskList';
 
 const containerStyles = {
   maxWidth: 1200,
-  minWidth: 800,
+  minWidth: 700,
   marginLeft: 'auto',
   marginRight: 'auto',
   textAlign: 'center'
