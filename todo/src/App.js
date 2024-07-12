@@ -57,7 +57,7 @@ class App extends Component {
   updatePriority = (id, priority) => {
     this.setState(state => ({
       tasks: state.tasks.map(task =>
-        task.id = id ? { ...task, priority: priority } : task
+        task.id === id ? { ...task, priority } : task
       )
     }))
   }

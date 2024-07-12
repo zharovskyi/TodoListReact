@@ -1,63 +1,46 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import PrioritySelector from '../PrioritySelector/PrioritySelector';
 import styles from './Task.module.css';
-import Priority from '../../utils/Priority';
+import PriorityOptions from '../../utils/Priority';
 import { identifier } from '@babel/types';
-
-const options = Object.values(Priority);
+import PrioritySelector from '../PrioritySelector/PrioritySlector';
 
 const Task = ({
-    text,
-    priority,
-    completed,
-    onDeleteTask,
-    onUpdateComplited,
-    onUpdatePriority,
+  id,
+  text,
+  priority,
+  completed,
+  onDeleteTask,
+  onUpdateComplited,
+  onUpdatePriority,
 }) => (
-        <div className={`${styles.task} y
-    ${styles[`${priority}Priority`]}`}>
-            <p className={styles.text}>{text}</p>
+  <div
+    className={`${styles.task} y
+    ${styles[`${priority}Priority`]}`}
+  >
+    <p className={styles.text}>{text}</p>
 
-            <hr />
-            <div className={styles.actions}>
-                <button type="button" onClick={onDeleteTask}>
-                    Delete
+    <hr />
+    <div className={styles.actions}>
+      <button type="button" onClick={onDeleteTask}>
+        Delete
       </button>
-                <select name="priority" value={priority} onChange={e => onUpdatePriority(identifier, e.target.value)}>
-                    <option value="low">Low</option>
-                    <option value="normal">Normal</option>
-                    <option value="high">High</option>
-                    {/* {options.map(option => (
-                    <option key={option} value={option}>
-                        {option}
-                    </option>
-                ))} */}
-                </select>
-                {/* <PrioritySelector
-       
-      /> */}
 
-                <label>
-                    Completed:
+      <PrioritySelector
+        value={priority}
+        options={Object.values(PriorityOptions)}
+        onChange={e => onUpdatePriority(id, e.target.value)}
+      />
+
+      <label>
+        Completed:
         <input
-                        type="checkbox"
-                        checked={completed}
-                        onChange={onUpdateComplited}
-                    />
-                </label>
-            </div>
-        </div>
-    );
-
-// Task.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   text: PropTypes.string.isRequired,
-//   priority: PropTypes.string.isRequired,
-//   completed: PropTypes.bool.isRequired,
-//   onDeleteTask: PropTypes.func.isRequired,
-//   onUpateCompleted: PropTypes.func.isRequired,
-//   onUpdatePriority: PropTypes.func.isRequired,
-// };
+          type="checkbox"
+          checked={completed}
+          onChange={onUpdateComplited}
+        />
+      </label>
+    </div>
+  </div>
+);
 
 export default Task;
